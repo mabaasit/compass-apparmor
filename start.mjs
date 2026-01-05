@@ -63,7 +63,7 @@ async function main() {
   const browser = await spawnElectronProxy('http://localhost:7777');
   console.log('[wdio] Electron proxy server started.')
 
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 200));
   console.log('[wdio] Closing Electron proxy server...');
   await browser.deleteSession({
     shutdownDriver: true
