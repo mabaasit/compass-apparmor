@@ -5,8 +5,9 @@
     "engines": {
         "node": "22.21.1"
     },
+    "type": "module",
     "scripts": {
-        "start": "node start.js"
+        "start": "node start.mjs"
     },
     "dependencies": {
         "electron": "^39.2.7",

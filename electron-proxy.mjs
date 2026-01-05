@@ -1,10 +1,8 @@
-'use strict';
-
-const express = require('express');
-const {
-  app: electronApp,
+import express from 'express';
+import {
+  app as electronApp,
   BrowserWindow,
-} = require('electron');
+} from 'electron';
 
 const expressProxy = express();
 const PROXY_PORT = 7777;
@@ -31,7 +29,7 @@ electronApp.whenReady().then(async () => {
   const emptyBrowserWindow = new BrowserWindow({ show: false, title: 'Proxy Server' });
   await emptyBrowserWindow.loadURL('about:blank');
 
-  server = expressProxy.listen(PROXY_PORT, 'localhost', () => {
+  server = expressProxy.listen(PROXY_PORT, '127.0.0.1', () => {
     console.log('[electron-proxy] starting proxy server on port %s', PROXY_PORT);
   });
 

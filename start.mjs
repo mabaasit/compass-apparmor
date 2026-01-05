@@ -1,8 +1,11 @@
-const { remote } = require('webdriverio');
-const electronPath = require('electron');
-const path = require('path');
-const os = require('os');
-const { execSync } = require('child_process');
+import { remote } from 'webdriverio';
+import electronPath from 'electron';
+import path from 'path';
+import os from 'os';
+import { execSync } from 'child_process';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 let electronChromiumVersion;
 try {
@@ -21,7 +24,7 @@ console.log(`Detected Chrome version: ${electronChromiumVersion}`);
 
 
 const sandboxRunnerPath = path.resolve(
-  'electron-proxy.js'
+  'electron-proxy.mjs'
 );
 const userDataPath = path.resolve(
   os.tmpdir(),
