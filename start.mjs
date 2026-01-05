@@ -33,9 +33,6 @@ const userDataPath = path.resolve(
 
 async function spawnElectronProxy(sandboxUrl) {
   const electronProxyRemote = await remote({
-    logLevels: {
-      webdriver: 'error',
-    },
     capabilities: {
       browserName: 'chromium',
       browserVersion: electronChromiumVersion,
@@ -49,6 +46,8 @@ async function spawnElectronProxy(sandboxUrl) {
       'wdio:enforceWebDriverClassic': true,
     },
   });
+
+  console.log('[wdio] Electron proxy server started.');
 
   const title = await electronProxyRemote.getTitle();
   console.log('[wdio] Electron proxy server started with title: %s', title);
@@ -66,7 +65,9 @@ async function main() {
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
   console.log('[wdio] Closing Electron proxy server...');
-  await browser.deleteSession();
+  await browser.deleteSession({
+    shutdownDriver: true
+  });
 }
 
 main().catch(console.error);
