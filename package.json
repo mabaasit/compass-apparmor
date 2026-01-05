@@ -7,13 +7,14 @@
     },
     "type": "module",
     "scripts": {
-        "start": "node start.mjs"
+        "start": "xvfb-maybe --auto-servernum --server-args=\"-screen 0 1432x840x24\" -- node start.mjs"
     },
     "dependencies": {
         "electron": "^39.2.7",
         "electron-to-chromium": "^1.5.267",
         "express": "^5.2.1",
         "wdio-electron-service": "^9.2.1",
-        "webdriverio": "^9.23.0"
+        "webdriverio": "^9.23.0",
+        "xvfb-maybe": "^0.2.1"
     }
 }
